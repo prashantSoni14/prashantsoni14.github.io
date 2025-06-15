@@ -13,23 +13,122 @@
         }
 
         :root {
-            --primary-color: #2563eb;
-            --secondary-color: #1e40af;
-            --accent-color: #3b82f6;
-            --text-dark: #1f2937;
-            --text-light: #6b7280;
-            --bg-light: #f8fafc;
-            --white: #ffffff;
-            --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            --primary-color: #48cae4;
+            --secondary-color: #0077b6;
+            --accent-color: #feca57;
+            --text-dark: #1a1a2e;
+            --text-light: #16213e;
+            --bg-light: rgba(240, 248, 255, 0.95);
+            --white: #f0f8ff;
+            --gradient: linear-gradient(135df, #0077b6 0%, #48cae4 50%, #90e0ef 100%);
+            --retro-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --shadow: 0 4px 6px -1px rgba(72, 202, 228, 0.3);
+            --shadow-lg: 0 10px 15px -3px rgba(72, 202, 228, 0.4);
+            --circuit-blue: #48cae4;
+            --data-orange: #ff9500;
+            --tech-purple: #6c5ce7;
         }
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
             color: var(--text-dark);
-            background: var(--bg-light);
+            background: linear-gradient(135deg, #0f3460 0%, #16537e 25%, #1e6f5c 50%, #29a19c 75%, #48cae4 100%);
+            background-size: 400% 400%;
+            animation: retro-bg 20s ease infinite;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                /* Circuit patterns */
+                radial-gradient(circle at 20% 80%, rgba(72, 202, 228, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(254, 202, 87, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(255, 107, 107, 0.05) 0%, transparent 50%),
+                /* Data visualization lines */
+                linear-gradient(90deg, transparent 24%, rgba(72, 202, 228, 0.1) 25%, rgba(72, 202, 228, 0.1) 26%, transparent 27%, transparent 74%, rgba(72, 202, 228, 0.1) 75%, rgba(72, 202, 228, 0.1) 76%, transparent 77%, transparent),
+                linear-gradient(0deg, transparent 24%, rgba(254, 202, 87, 0.08) 25%, rgba(254, 202, 87, 0.08) 26%, transparent 27%, transparent 74%, rgba(254, 202, 87, 0.08) 75%, rgba(254, 202, 87, 0.08) 76%, transparent 77%, transparent),
+                /* Binary code pattern */
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text x="10" y="20" font-family="monospace" font-size="8" fill="rgba(72,202,228,0.1)">01101001</text><text x="5" y="35" font-family="monospace" font-size="8" fill="rgba(254,202,87,0.1)">11010110</text><text x="15" y="50" font-family="monospace" font-size="8" fill="rgba(255,107,107,0.08)">10110101</text><text x="8" y="65" font-family="monospace" font-size="8" fill="rgba(72,202,228,0.1)">01011010</text><text x="12" y="80" font-family="monospace" font-size="8" fill="rgba(254,202,87,0.1)">11001011</text></svg>');
+            background-size: 200px 200px, 150px 150px, 180px 180px, 80px 80px, 120px 120px, 300px 300px;
+            background-position: 0 0, 50px 50px, 100px 0, 0 0, 0 0, 0 0;
+            animation: tech-bg-move 30s linear infinite;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                /* Electronic circuit nodes */
+                radial-gradient(circle at 15% 25%, rgba(72, 202, 228, 0.3) 1px, transparent 2px),
+                radial-gradient(circle at 85% 75%, rgba(254, 202, 87, 0.3) 1px, transparent 2px),
+                radial-gradient(circle at 60% 15%, rgba(255, 107, 107, 0.2) 1px, transparent 2px),
+                radial-gradient(circle at 25% 85%, rgba(72, 202, 228, 0.2) 1px, transparent 2px),
+                radial-gradient(circle at 75% 45%, rgba(254, 202, 87, 0.2) 1px, transparent 2px),
+                /* Connection lines */
+                linear-gradient(45deg, transparent 49%, rgba(72, 202, 228, 0.1) 50%, transparent 51%),
+                linear-gradient(-45deg, transparent 49%, rgba(254, 202, 87, 0.08) 50%, transparent 51%);
+            background-size: 400px 400px, 350px 350px, 450px 450px, 380px 380px, 420px 420px, 200px 200px, 180px 180px;
+            background-position: 0 0, 100px 100px, 200px 0, 50px 150px, 150px 50px, 0 0, 50px 50px;
+            animation: circuit-flow 25s linear infinite;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        @keyframes retro-bg {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        @keyframes tech-bg-move {
+            0% {
+                transform: translateX(0) translateY(0);
+            }
+            25% {
+                transform: translateX(-50px) translateY(-25px);
+            }
+            50% {
+                transform: translateX(-100px) translateY(-50px);
+            }
+            75% {
+                transform: translateX(-150px) translateY(-25px);
+            }
+            100% {
+                transform: translateX(-200px) translateY(0);
+            }
+        }
+
+        @keyframes circuit-flow {
+            0% {
+                background-position: 0 0, 100px 100px, 200px 0, 50px 150px, 150px 50px, 0 0, 50px 50px;
+            }
+            50% {
+                background-position: 200px 100px, 300px 200px, 400px 100px, 250px 250px, 350px 150px, 100px 100px, 150px 150px;
+            }
+            100% {
+                background-position: 400px 200px, 500px 300px, 600px 200px, 450px 350px, 550px 250px, 200px 200px, 250px 250px;
+            }
         }
 
         .container {
@@ -40,11 +139,12 @@
 
         /* Header */
         .header {
-            background: var(--gradient);
+            background: linear-gradient(135deg, #0f3460 0%, #16537e 25%, #48cae4 50%, #90e0ef 75%, #caf0f8 100%);
             color: var(--white);
             padding: 60px 0;
             position: relative;
             overflow: hidden;
+            box-shadow: 0 8px 32px rgba(72, 202, 228, 0.4);
         }
 
         .header::before {
@@ -54,7 +154,23 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            background-image: 
+                /* Matrix-like pattern */
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="matrix" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1" fill="rgba(255,255,255,0.2)"/><line x1="0" y1="10" x2="20" y2="10" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/><line x1="10" y1="0" x2="10" y2="20" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23matrix)"/></svg>'),
+                /* Data flow lines */
+                linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.1) 32%, transparent 34%),
+                linear-gradient(-45deg, transparent 60%, rgba(255,255,255,0.08) 62%, transparent 64%);
+            background-size: 50px 50px, 200px 200px, 150px 150px;
+            animation: header-flow 20s linear infinite;
+        }
+
+        @keyframes header-flow {
+            0% {
+                background-position: 0 0, 0 0, 0 0;
+            }
+            100% {
+                background-position: 50px 50px, 200px 200px, -150px 150px;
+            }
         }
 
         .header-content {
@@ -159,7 +275,21 @@
             left: 0;
             width: 100%;
             height: 4px;
-            background: var(--gradient);
+            background: linear-gradient(90deg, #48cae4, #ff9500, #6c5ce7, #48cae4);
+            background-size: 300% 100%;
+            animation: data-flow 4s ease infinite;
+        }
+
+        @keyframes data-flow {
+            0% {
+                background-position: 0% 0%;
+            }
+            50% {
+                background-position: 100% 0%;
+            }
+            100% {
+                background-position: 0% 0%;
+            }
         }
 
         .section-title {
@@ -187,9 +317,26 @@
         .edu-item, .cert-item {
             background: var(--bg-light);
             padding: 25px;
-            border-radius: 10px;
+            border-radius: 15px;
             margin-bottom: 20px;
             border-left: 4px solid var(--accent-color);
+            box-shadow: 0 4px 15px rgba(72, 202, 228, 0.2);
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .edu-item::before, .cert-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50px;
+            height: 50px;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2L13.09 8.26L20 9L13.09 9.74L12 16L10.91 9.74L4 9L10.91 8.26L12 2Z" fill="rgba(72,202,228,0.1)"/></svg>');
+            background-size: 30px 30px;
+            background-repeat: no-repeat;
+            background-position: center;
         }
 
         .edu-title, .cert-title {
@@ -214,8 +361,52 @@
         .skill-category {
             background: var(--bg-light);
             padding: 25px;
-            border-radius: 10px;
+            border-radius: 15px;
             border-left: 4px solid var(--accent-color);
+            box-shadow: 0 4px 15px rgba(72, 202, 228, 0.2);
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-category::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            width: 60px;
+            height: 60px;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9,2V8H11V11H9V17H11V20H9V22H15V20H13V17H15V11H13V8H15V2H9M11,4H13V6H11V4M11,13H13V15H11V13Z" fill="rgba(72,202,228,0.08)"/></svg>');
+            background-size: 40px 40px;
+            background-repeat: no-repeat;
+            background-position: center;
+            opacity: 0.3;
+        }
+
+        .skill-tag {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--white);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-tag::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .skill-tag:hover::before {
+            left: 100%;
         }
 
         .skill-category h4 {
@@ -244,15 +435,33 @@
         .project-item {
             background: var(--bg-light);
             padding: 30px;
-            border-radius: 10px;
+            border-radius: 15px;
             margin-bottom: 25px;
             border-left: 4px solid var(--accent-color);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 15px rgba(72, 202, 228, 0.2);
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 80px;
+            height: 80px;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3,3H21V5H19V19A2,2 0 0,1 17,21H7A2,2 0 0,1 5,19V5H3V3M9,8V10H11V8H9M13,8V10H15V8H13M9,12V14H11V12H9M13,12V14H15V12H13Z" fill="rgba(72,202,228,0.08)"/></svg>');
+            background-size: 50px 50px;
+            background-repeat: no-repeat;
+            background-position: center;
+            opacity: 0.4;
         }
 
         .project-item:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-lg);
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(72, 202, 228, 0.4);
         }
 
         .project-title {
@@ -275,10 +484,53 @@
         .exp-item {
             background: var(--bg-light);
             padding: 30px;
-            border-radius: 10px;
+            border-radius: 15px;
             margin-bottom: 25px;
             border-left: 4px solid var(--accent-color);
             position: relative;
+            box-shadow: 0 4px 15px rgba(72, 202, 228, 0.2);
+            backdrop-filter: blur(10px);
+            overflow: hidden;
+        }
+
+        .exp-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 70px;
+            height: 70px;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M16.2,16.2L11,13V7H12.5V12.2L17,15.4L16.2,16.2Z" fill="rgba(72,202,228,0.08)"/></svg>');
+            background-size: 40px 40px;
+            background-repeat: no-repeat;
+            background-position: center;
+            opacity: 0.4;
+        }
+
+        .exp-duration {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--white);
+            padding: 5px 15px;
+            border-radius: 15px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .exp-duration::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.8s;
+        }
+
+        .exp-item:hover .exp-duration::before {
+            left: 100%;
         }
 
         .exp-header {
@@ -340,17 +592,41 @@
 
         .sample-link:hover {
             background: var(--secondary-color);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-lg);
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(72, 202, 228, 0.5);
         }
 
         /* Footer */
         .footer {
-            background: var(--text-dark);
+            background: linear-gradient(135deg, #0f3460 0%, #16213e 100%);
             color: var(--white);
             text-align: center;
             padding: 40px 0;
             margin-top: 60px;
+            box-shadow: 0 -4px 20px rgba(72, 202, 228, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="1" fill="rgba(72,202,228,0.3)"/><circle cx="80" cy="80" r="1" fill="rgba(254,202,87,0.3)"/><circle cx="50" cy="30" r="1" fill="rgba(108,92,231,0.3)"/><circle cx="30" cy="70" r="1" fill="rgba(72,202,228,0.2)"/></svg>');
+            background-size: 200px 200px;
+            animation: footer-stars 15s linear infinite;
+        }
+
+        @keyframes footer-stars {
+            0% {
+                background-position: 0 0;
+            }
+            100% {
+                background-position: 200px 200px;
+            }
         }
 
         /* Responsive Design */
